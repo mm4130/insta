@@ -6,7 +6,7 @@
 if (!file_exists('function.php')) {
     copy('https://raw.githubusercontent.com/mm4130/insta/master/function.php', 'function.php');
 }
-require('/function.php');
+require __DIR__.'/function.php';
 $instaurl = $_GET['url'];
 $fileget = furl($instaurl);
 $match = match('/window\._sharedData = (.*?);<\/script>/m',$fileget);
