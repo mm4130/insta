@@ -19,19 +19,6 @@ function furl($url){
     curl_close($curl);
     return $data;
 }
-function bot($method,$datas=[]){
-    $url = "https://api.telegram.org/bot".API_KEY."/".$method;
-    $ch = curl_init();
-    curl_setopt($ch,CURLOPT_URL,$url);
-    curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
-    curl_setopt($ch,CURLOPT_POSTFIELDS,$datas);
-    $res = curl_exec($ch);
-    if(curl_error($ch)){
-        var_dump(curl_error($ch));
-    }else{
-        return json_decode($res);
-    }
-}
 function match($match,$su,$ss=1){
     preg_match($match,$su,$sp);
     return $sp[$ss];
@@ -45,43 +32,5 @@ function jsen($data){
 }
 function jsde($data,$var=true){
     return json_decode($data,$vaaar);   
-}
-function calculator($textbox){
-            //  Preg_match function to match the patern and express the result
-            if(preg_match('/(?:\-?[0-9]+(?:\.?[0-9]+)?[\+\-\*\/]+)+\-?[0-9]+(?:\.?[0-9]+)?/', $textbox, $matchpattern)){
-                // need faddition function
-                return faddition($matchpattern[0]);
-            }
-            return 0;
-        
-        return $textbox;
-    }
-function faddition($textbox){
-        $n = create_function(' ', 'return '.$textbox.';');
-        return $n();
-    }
-function realFilename($url){
-   $headers      = get_headers($url, 1);
-   $headers      = array_change_key_case($headers, CASE_LOWER);
-   $realfilename = '';
- 
-   if(isset($headers['content-disposition'])) 
-      {
-         $tmp_name = explode('=', $headers['content-disposition']);
-         if($tmp_name[1]) 
-            {
-               $realfilename = trim($tmp_name[1], '";\'');
-            }
-      } 
-   else  
-      { 
-         $info         = pathinfo($url);
-         if(isset($info['extension']))
-            {
-               $realfilename = $info['filename'].'.'.$info['extension']; 
-            }
-      } 
- 
-  return $realfilename;
 }
 ?>
